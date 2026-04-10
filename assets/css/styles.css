@@ -264,9 +264,13 @@ body:not([data-theme="light"]) .logo-light { display: block; }
   top: 100%;
   left: 0;
   width: 100%;
+  max-height: calc(100vh - 80px); /* Prevent overflow past viewport */
+  overflow-y: auto;
   background: var(--surface);
   padding: var(--space-sm);
   border-bottom: 1px solid var(--outline-variant);
+  z-index: 100;
+  box-shadow: var(--shadow-ambient);
 }
 
 /* Theme Toggle */
@@ -927,6 +931,44 @@ input:focus, textarea:focus {
    ========================================================================== */
 
 /* Mobile: collapse bento grid to single column */
+/* Mobile: scaling & adjustments */
+@media (max-width: 767px) {
+  .nav-brand img {
+    height: 28px;
+  }
+  .brand-text {
+    font-size: 0.95rem;
+    margin-left: 0.5rem;
+    letter-spacing: 0.05em;
+  }
+  .site-header .container {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+  .nav-actions {
+    gap: 0.5rem;
+  }
+  .nav-cta {
+    display: none !important;
+  }
+  .nav-mobile-cta {
+    display: block;
+    margin-top: 1rem;
+    padding: 1rem;
+    border: 1px solid var(--primary);
+    border-radius: var(--radius-sm);
+    color: var(--primary) !important;
+    text-align: center;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: background 0.3s ease;
+  }
+  .nav-mobile-cta:active {
+    background: color-mix(in srgb, var(--primary) 10%, transparent);
+  }
+}
+
 @media (max-width: 1023px) {
   .grid-12 {
     display: grid;
@@ -956,6 +998,9 @@ input:focus, textarea:focus {
   }
   .nav-cta {
     display: inline-flex !important;
+  }
+  .nav-mobile-cta {
+    display: none;
   }
   .hero {
     min-height: 90vh;

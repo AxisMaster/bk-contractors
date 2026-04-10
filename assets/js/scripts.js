@@ -35,12 +35,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Shared: Show in-page status banner ---
     function showStatus(statusDiv, type, message) {
-        const icon = type === 'success' ? '✓' : '✕';
-        statusDiv.innerHTML = `
-            <div class="form-status-banner form-status-${type}">
-                <span class="form-status-icon">${icon}</span>
-                <p class="form-status-msg">${message}</p>
-            </div>`;
+        const icon = type === 'success' ? 'check_circle' : 'error';
+        
+        // Clear previous content
+        statusDiv.innerHTML = '';
+        
+        // Create banner container
+        const banner = document.createElement('div');
+        banner.className = `form-status-banner form-status-${type}`;
+        
+        // Create icon using Material Symbols
+        const iconSpan = document.createElement('span');
+        iconSpan.className = 'material-symbols-outlined form-status-icon';
+        iconSpan.textContent = icon;
+        
+        // Create message text
+        const msgText = document.createElement('p');
+        msgText.className = 'form-status-msg';
+        msgText.textContent = message;
+        
+        // Assemble and show
+        banner.appendChild(iconSpan);
+        banner.appendChild(msgText);
+        statusDiv.appendChild(banner);
+        
         statusDiv.style.display = 'block';
         statusDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
