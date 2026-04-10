@@ -63,6 +63,36 @@ document.addEventListener('DOMContentLoaded', () => {
         statusDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 
+    // --- Web3Forms Config ---
+    const WEB3FORMS_URL = 'https://api.web3forms.com/submit';
+    const WEB3FORMS_KEY = '6659b1f0-e76f-4d59-b717-0de9e04361ff';
+
+    // --- Shared: Submit form data to Web3Forms ---
+    async function submitToWeb3Forms(formData, subject) {
+        const payload = {
+            access_key: WEB3FORMS_KEY,
+            subject: subject || 'Website form submission',
+            ...formData
+        };
+
+        const response = await fetch(WEB3FORMS_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        });
+
+        const data = await response.json();
+
+        if (!response.ok || !data.success) {
+            throw new Error(data.message || 'Submission failed');
+        }
+
+        return data;
+    }
+
     // --- Page Specific: Register Form ---
     const registerForm = document.getElementById('register-form');
     if (registerForm) {
@@ -80,24 +110,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const object = Object.fromEntries(formData.entries());
             
             try {
-                const response = await fetch('/api/submit', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    },
-                    body: JSON.stringify(object)
-                });
-                
-                const data = await response.json();
-                
-                if (data.success) {
-                    registerForm.reset();
-                    registerForm.style.display = 'none';
-                    if (statusDiv) showStatus(statusDiv, 'success', 'Your credentials have been submitted! Our team will review your profile and reach out shortly.');
-                } else {
-                    throw new Error(data.message || 'Submission failed');
-                }
+                await submitToWeb3Forms(object, 'New Worker Registration — BK Contractors');
+                registerForm.reset();
+                registerForm.style.display = 'none';
+                if (statusDiv) showStatus(statusDiv, 'success', 'Your credentials have been submitted! Our team will review your profile and reach out shortly.');
             } catch (error) {
                 if (statusDiv) showStatus(statusDiv, 'error', `Something went wrong: ${error.message}. Please try again.`);
             } finally {
@@ -124,24 +140,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const object = Object.fromEntries(formData.entries());
 
             try {
-                const response = await fetch('/api/submit', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    },
-                    body: JSON.stringify(object)
-                });
-                
-                const data = await response.json();
-                
-                if (data.success) {
-                    contactForm.reset();
-                    contactForm.style.display = 'none';
-                    if (statusDiv) showStatus(statusDiv, 'success', "Your enquiry has been received. We'll be in touch within one business day.");
-                } else {
-                    throw new Error(data.message || 'Submission failed');
-                }
+                await submitToWeb3Forms(object, 'New Contact Enquiry — BK Contractors');
+                contactForm.reset();
+                contactForm.style.display = 'none';
+                if (statusDiv) showStatus(statusDiv, 'success', "Your enquiry has been received. We'll be in touch within one business day.");
             } catch (error) {
                 if (statusDiv) showStatus(statusDiv, 'error', `Something went wrong: ${error.message}. Please try again.`);
             } finally {
