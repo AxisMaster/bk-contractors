@@ -5,8 +5,8 @@
    ========================================================================== */
 :root {
   /* Colors - Industrial Prestige (Dark / Default) */
-  --primary: #f2ca50;
-  --primary-container: #d4af37;
+  --primary: #D4AF37;
+  --primary-container: #B8860B;
   --on-primary: #3c2f00;
   --on-primary-variant: rgba(60, 47, 0, 0.8);
   
@@ -55,8 +55,8 @@
 
 [data-theme="light"] {
   /* Colors - Light Theme Overrides */
-  --primary: #c29923;
-  --primary-container: #a68114;
+  --primary: #B8860B;
+  --primary-container: #8B6508;
   --on-primary: #ffffff;
   --on-primary-variant: rgba(255, 255, 255, 0.8);
   
@@ -438,12 +438,12 @@ body:not([data-theme="light"]) .hero-img-light { display: none; }
   font-weight: 700;
   letter-spacing: 0.1em;
   border-radius: var(--radius-lg);
-  box-shadow: 0 10px 15px -3px rgba(242, 202, 80, 0.1);
+  box-shadow: 0 10px 15px -3px rgba(212, 175, 55, 0.1);
   transition: all 0.3s;
 }
 
 .btn-hero-primary:hover {
-  box-shadow: 0 10px 15px -3px rgba(242, 202, 80, 0.2);
+  box-shadow: 0 10px 15px -3px rgba(212, 175, 55, 0.2);
   transform: scale(0.98);
 }
 
@@ -740,6 +740,20 @@ input:focus, textarea:focus {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+}
+
+.brand-text {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--primary);
+  margin-left: 0.75rem;
+  font-size: 1.25rem;
+}
+
+.footer-brand-text {
+  font-size: 1.1rem;
 }
 
 /* Typography Utilities */
