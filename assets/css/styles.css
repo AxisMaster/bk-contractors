@@ -746,18 +746,53 @@ input:focus, textarea:focus {
   color: transparent;
 }
 
-.brand-text {
-  font-family: var(--font-display);
-  font-weight: 800;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--primary);
-  margin-left: 0.75rem;
-  font-size: 1.25rem;
+/* MCA-style stacked brand text */
+.brand-text-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  margin-left: 0.6rem;
 }
 
-.footer-brand-text {
-  font-size: 1.1rem;
+.brand-text-line {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  line-height: 1;
+}
+
+.brand-letter-box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.1em;
+  height: 1.1em;
+  background: var(--on-surface);
+  color: var(--surface);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.brand-letter-rest {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--on-surface);
+}
+
+/* Footer variant — slightly smaller */
+.footer-brand-stack .brand-letter-box {
+  font-size: 0.6rem;
+  width: 1.1em;
+  height: 1.1em;
+}
+.footer-brand-stack .brand-letter-rest {
+  font-size: 0.6rem;
 }
 
 /* Typography Utilities */
@@ -936,10 +971,16 @@ input:focus, textarea:focus {
   .nav-brand img {
     height: 28px;
   }
-  .brand-text {
-    font-size: 0.95rem;
-    margin-left: 0.5rem;
-    letter-spacing: 0.05em;
+  .brand-text-stack {
+    margin-left: 0.4rem;
+    gap: 0px;
+  }
+  .brand-letter-box {
+    font-size: 0.5rem;
+  }
+  .brand-letter-rest {
+    font-size: 0.5rem;
+    letter-spacing: 0.03em;
   }
   .site-header .container {
     padding-left: 0.75rem;
