@@ -785,14 +785,14 @@ input:focus, textarea:focus {
   color: var(--on-surface);
 }
 
-/* Footer variant — slightly smaller */
+/* Footer variant — matching image height */
 .footer-brand-stack .brand-letter-box {
-  font-size: 0.6rem;
-  width: 1.1em;
-  height: 1.1em;
+  font-size: 1.3rem;
+  width: 1.15em;
+  height: 1.15em;
 }
 .footer-brand-stack .brand-letter-rest {
-  font-size: 0.6rem;
+  font-size: 1.3rem;
 }
 
 /* Typography Utilities */
